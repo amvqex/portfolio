@@ -1,0 +1,11 @@
+{
+  "name": "dr-aashutosh-mattikoppa-portfolio",
+  "version": "1.0.0",
+  "description": "Static portfolio and social link hub for Dr. Aashutosh Mattikoppa",
+  "scripts": {
+    "dev": "npm --prefix client run dev",
+    "build": "npm --prefix client run build",
+    "preview": "npm --prefix client run preview",
+    "start": "npm --prefix client run dev"
+  }
+}
