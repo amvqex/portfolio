@@ -13,6 +13,27 @@ export const profileData = {
       description: 'Professional & creative portfolio'
     },
     {
+      id: 'youtube-main',
+      platform: 'YouTube',
+      handle: '@DrXInfinity',
+      url: 'https://www.youtube.com/@DrXInfinity',
+      description: 'Official YouTube channel'
+    },
+    {
+      id: 'snapchat',
+      platform: 'Snapchat',
+      handle: 'drxinfinity',
+      url: 'https://www.snapchat.com/add/drxinfinity?share_id=PrP6g8lbJcU&locale=en-IN',
+      description: 'Daily snaps & stories'
+    },
+    {
+      id: 'youtube-kannada',
+      platform: 'YouTube (Kannada)',
+      handle: '@aashutoshmm',
+      url: 'https://youtube.com/@aashutoshmm?si=mMZhUliNyu1fsSQT',
+      description: 'Kannada YouTube channel & content'
+    },
+    {
       id: 'instagram-personal',
       platform: 'Instagram (Personal)',
       handle: '@dr.ashutosh.mm',
@@ -25,20 +46,6 @@ export const profileData = {
       handle: '@DrAashutoshMM',
       url: 'https://x.com/DrAashutoshMM',
       description: 'Thoughts, insights & updates'
-    },
-    {
-      id: 'snapchat',
-      platform: 'Snapchat',
-      handle: 'drxinfinity',
-      url: 'https://www.snapchat.com/add/drxinfinity?share_id=PrP6g8lbJcU&locale=en-IN',
-      description: 'Daily snaps & stories'
-    },
-    {
-      id: 'youtube',
-      platform: 'YouTube (Kannada)',
-      handle: '@aashutoshmm',
-      url: 'https://youtube.com/@aashutoshmm?si=mMZhUliNyu1fsSQT',
-      description: 'Kannada YouTube channel & content'
     },
     {
       id: 'facebook',
