@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: light dark;
+  color-scheme: dark;
 }
 
 body {
@@ -14,28 +14,37 @@ body {
   min-height: 100vh;
   font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
-  transition: background-color 0.3s ease, color 0.3s ease;
+  background-color: #0b0c10;
+  color: #f4f4f5;
 }
 
-/* Crisp Dot Grid Background matching the image */
-.dot-grid-light {
-  background-color: #ffffff;
-  background-image: radial-gradient(rgba(0, 0, 0, 0.18) 1px, transparent 1px);
-  background-size: 24px 24px;
-}
-
+/* Crisp Dot Grid Background */
 .dot-grid-dark {
   background-color: #0b0c10;
   background-image: radial-gradient(rgba(255, 255, 255, 0.15) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Giant typography matching the image */
-.hero-giant-text {
-  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-  font-weight: 850;
-  letter-spacing: -0.06em;
-  line-height: 0.85;
+@keyframes marquee-rtl {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-rtl {
+  display: flex;
+  width: max-content;
+  animation: marquee-rtl 28s linear infinite;
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-marquee-rtl {
+    animation: none;
+  }
 }
 
 /* Custom scrollbars */
