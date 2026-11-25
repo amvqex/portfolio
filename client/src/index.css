@@ -25,24 +25,29 @@ body {
   background-size: 24px 24px;
 }
 
-@keyframes marquee-rtl {
+/* Continuous Left-to-Right Infinite Loop Marquee */
+@keyframes marquee-ltr {
   0% {
-    transform: translateX(0);
+    transform: translateX(-50%);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translateX(0%);
   }
 }
 
-.animate-marquee-rtl {
+.animate-marquee-ltr {
   display: flex;
   width: max-content;
-  animation: marquee-rtl 28s linear infinite;
+  animation: marquee-ltr 32s linear infinite;
   will-change: transform;
 }
 
+.animate-marquee-ltr:hover {
+  animation-play-state: paused;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  .animate-marquee-rtl {
+  .animate-marquee-ltr {
     animation: none;
   }
 }

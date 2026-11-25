@@ -1,98 +1,54 @@
-import React, { useState } from 'react';
-import { ShieldCheck, ExternalLink, Copy, Check } from 'lucide-react';
-import { getSocialIcon } from './SocialIcons';
-import ImageCarousel from './ImageCarousel';
+import React from 'react';
+import { ShieldCheck } from 'lucide-react';
+import PhotoGrid from './PhotoGrid';
+import CompactSocialGrid from './CompactSocialGrid';
 
 export default function Hero({ profile }) {
-  const [copiedId, setCopiedId] = useState(null);
   const socials = profile?.socials || [];
 
-  const handleCopy = (e, id, text) => {
-    e.preventDefault();
-    e.stopPropagation();
-    navigator.clipboard.writeText(text);
-    setCopiedId(id);
-    setTimeout(() => setCopiedId(null), 2000);
-  };
-
   return (
-    <section className="relative z-10 flex flex-col items-center justify-center min-h-[92vh] px-4 text-center select-none py-12 sm:py-16">
-      {/* Central Identity Header */}
-      <div className="flex flex-col items-center space-y-3 mb-2 sm:mb-4 max-w-4xl mx-auto">
+    <section className="relative z-10 flex flex-col items-center justify-center min-h-screen px-3 py-3 text-center select-none max-w-sm sm:max-w-md mx-auto w-full">
+      {/* 1. Header: Reg No Badge & Name */}
+      <div className="flex flex-col items-center space-y-1 mb-2">
         {/* Registration Badge */}
-        <div className="inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-mono font-medium bg-emerald-950/70 text-emerald-300 border border-emerald-800 shadow-xs">
-          <ShieldCheck className="w-3.5 h-3.5 text-emerald-400" />
+        <div className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono font-medium bg-emerald-950/70 text-emerald-300 border border-emerald-800/80 shadow-xs">
+          <ShieldCheck className="w-3 h-3 text-emerald-400" />
           <span>{profile?.regNo || 'Reg. No. 52525'}</span>
         </div>
 
         {/* Full Name */}
-        <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-tight">
+        <h1 className="text-xl sm:text-2xl font-extrabold text-white tracking-tight leading-tight">
           {profile?.name || 'Dr. Aashutosh Mattikoppa'}
         </h1>
       </div>
 
-      {/* 9-Image Carousel directly under the name */}
-      <ImageCarousel />
+      {/* 2. Photo Gallery: 5 cols × 2 rows static grid (All photos visible directly) */}
+      <div className="w-full my-1">
+        <div className="flex items-center justify-center gap-2 mb-1">
+          <span className="h-[1px] w-5 bg-zinc-800" />
+          <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-400 font-semibold">
+            Photo Highlights
+          </span>
+          <span className="h-[1px] w-5 bg-zinc-800" />
+        </div>
+        <PhotoGrid />
+      </div>
 
-      {/* Direct Social Media Links Hub */}
-      <div className="w-full max-w-2xl mx-auto px-4 mt-2 sm:mt-4">
-        {/* Subtle Section Divider */}
-        <div className="flex items-center justify-center gap-2 mb-5">
-          <span className="h-[1px] w-8 bg-zinc-800" />
-          <span className="text-[11px] font-mono uppercase tracking-wider text-zinc-400 font-semibold">
+      {/* 3. Social & Quick Links: 5 cols × 2 rows compact icon grid */}
+      <div className="w-full my-1">
+        <div className="flex items-center justify-center gap-2 mb-1">
+          <span className="h-[1px] w-5 bg-zinc-800" />
+          <span className="text-[9px] font-mono uppercase tracking-widest text-zinc-400 font-semibold">
             Social Profiles & Direct Links
           </span>
-          <span className="h-[1px] w-8 bg-zinc-800" />
+          <span className="h-[1px] w-5 bg-zinc-800" />
         </div>
+        <CompactSocialGrid socials={socials} />
+      </div>
 
-        {/* Direct Clickable Social Cards Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-left">
-          {socials.map((social) => (
-            <a
-              key={social.id}
-              href={social.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex items-center justify-between p-3.5 rounded-2xl border border-zinc-800 bg-zinc-900/80 backdrop-blur-md hover:bg-zinc-900 transition-all hover:scale-[1.02] hover:shadow-lg hover:border-zinc-700 select-auto"
-            >
-              <div className="flex items-center gap-3 min-w-0">
-                <div className="w-10 h-10 rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-100 group-hover:scale-110 transition-transform">
-                  {getSocialIcon(social.id, 'w-5 h-5')}
-                </div>
-                <div className="min-w-0">
-                  <div className="flex items-center gap-1.5">
-                    <span className="text-sm font-bold text-white truncate">
-                      {social.platform}
-                    </span>
-                  </div>
-                  <p className="text-xs text-zinc-400 truncate font-mono">
-                    {social.handle || 'Visit profile'}
-                  </p>
-                </div>
-              </div>
-
-              {/* Action buttons */}
-              <div className="flex items-center gap-1 pl-2">
-                {social.handle && (
-                  <button
-                    onClick={(e) => handleCopy(e, social.id, social.handle)}
-                    title={`Copy handle ${social.handle}`}
-                    className="p-1.5 text-zinc-400 hover:text-zinc-100 hover:bg-zinc-800 rounded-lg transition-colors cursor-pointer"
-                  >
-                    {copiedId === social.id ? (
-                      <Check className="w-4 h-4 text-emerald-400" />
-                    ) : (
-                      <Copy className="w-4 h-4" />
-                    )}
-                  </button>
-                )}
-                <div className="p-1.5 text-zinc-400 group-hover:text-white transition-colors">
-                  <ExternalLink className="w-4 h-4" />
-                </div>
-              </div>
-            </a>
-          ))}
-        </div>
+      {/* 4. Minimal Footer */}
+      <div className="mt-2 text-[9px] font-mono text-zinc-400">
+        <span>© {new Date().getFullYear()} Dr. Aashutosh Mattikoppa</span>
       </div>
     </section>
   );
